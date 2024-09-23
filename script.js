@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const slider = document.getElementById('slider');
     const daySelector = document.getElementById('day-selector');
-    const noteInput = document.getElementById('note-input');
-    const saveNoteBtn = document.getElementById('save-note');
+    const notesTextarea = document.getElementById('notes'); // Updated ID
+    const saveNotesBtn = document.getElementById('save-notes');
     let currentDay = 1;
 
     // Function to fetch the itinerary content from itinerary.md
@@ -39,12 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 dayContent.innerHTML += nextElement.outerHTML;
                 nextElement = nextElement.nextElementSibling;
             }
-
-            // Add a notes section to each day
-            const notesSection = document.createElement('div');
-            notesSection.className = 'notes-section';
-            notesSection.innerHTML = '<h3>Notes:</h3><ul class="notes-list"></ul>';
-            dayContent.appendChild(notesSection);
 
             slider.appendChild(dayContent);
 
@@ -104,35 +98,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Note-saving functionality
-    saveNoteBtn.addEventListener('click', saveNote);
+    saveNotesBtn.addEventListener('click', saveNotes);
 
-    function saveNote() {
-        const note = noteInput.value.trim();
-        if (note) {
-            const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
-            if (!notes[currentDay]) {
-                notes[currentDay] = [];
-            }
-            notes[currentDay].push(note);
-            localStorage.setItem('itineraryNotes', JSON.stringify(notes));
-            noteInput.value = '';
-            displayNotes(currentDay);
-        }
+    function saveNotes() {
+        const notes = notesTextarea.value.trim();
+        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+        allNotes[currentDay] = notes;
+        localStorage.setItem('itineraryNotes', JSON.stringify(allNotes));
     }
 
     function loadNotes() {
-        const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
-        Object.keys(notes).forEach(day => {
-            displayNotes(parseInt(day));
-        });
+        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+        displayNotes(currentDay);
     }
 
     function displayNotes(day) {
-        const notesSection = document.querySelector(`.day-content:nth-child(${day}) .notes-list`);
-        if (notesSection) {
-            const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
-            const dayNotes = notes[day] || [];
-            notesSection.innerHTML = dayNotes.map(note => `<li>${note}</li>`).join('');
-        }
+        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+        const dayNotes = allNotes[day] || '';
+        notesTextarea.value = dayNotes;
     }
 });

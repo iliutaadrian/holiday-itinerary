@@ -148,26 +148,30 @@ footer {
     padding: 0 15px;
 }
 
-#note-input {
+#notes {
     flex-grow: 1;
     padding: 8px;
     border: 1px solid #8b0000;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     font-family: 'Lora', serif;
+    resize: vertical;
+    min-height: 100px;
+    margin-right: 10px;
 }
 
-#save-note {
+#save-notes {
     background-color: #8b0000;
     color: #fff;
     border: none;
     padding: 8px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     font-family: 'Lora', serif;
+    align-self: flex-start;
 }
 
-#save-note:hover {
+#save-notes:hover {
     background-color: #ce2b37;
 }
 
