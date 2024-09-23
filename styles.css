@@ -139,6 +139,38 @@ footer {
     background: linear-gradient(to right, #009246 33.33%, #fff 33.33%, #fff 66.66%, #ce2b37 66.66%);
 }
 
+/* Notes container styles */
+#notes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+#note-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #8b0000;
+    border-radius: 5px 0 0 5px;
+    font-family: 'Lora', serif;
+}
+
+#save-note {
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 0 5px 5px 0;
+    font-family: 'Lora', serif;
+}
+
+#save-note:hover {
+    background-color: #ce2b37;
+}
+
 /* Tablet styles */
 @media (min-width: 600px) {
     body {

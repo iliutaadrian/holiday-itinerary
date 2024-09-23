@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const slider = document.getElementById('slider');
     const daySelector = document.getElementById('day-selector');
+    const noteInput = document.getElementById('note-input');
+    const saveNoteBtn = document.getElementById('save-note');
     let currentDay = 1;
 
     // Function to fetch the itinerary content from itinerary.md
@@ -38,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 nextElement = nextElement.nextElementSibling;
             }
 
+            // Add a notes section to each day
+            const notesSection = document.createElement('div');
+            notesSection.className = 'notes-section';
+            notesSection.innerHTML = '<h3>Notes:</h3><ul class="notes-list"></ul>';
+            dayContent.appendChild(notesSection);
+
             slider.appendChild(dayContent);
 
             const dayButton = document.createElement('button');
@@ -49,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         showDay(1);
+        loadNotes();
     }
 
     function showDay(day) {
@@ -58,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         currentDay = day;
         updateActiveButton();
+        displayNotes(day);
     }
 
     function updateActiveButton() {
@@ -90,6 +100,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (touchEndX > touchStartX && currentDay > 1) {
             showDay(currentDay - 1);
+        }
+    }
+
+    // Note-saving functionality
+    saveNoteBtn.addEventListener('click', saveNote);
+
+    function saveNote() {
+        const note = noteInput.value.trim();
+        if (note) {
+            const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+            if (!notes[currentDay]) {
+                notes[currentDay] = [];
+            }
+            notes[currentDay].push(note);
+            localStorage.setItem('itineraryNotes', JSON.stringify(notes));
+            noteInput.value = '';
+            displayNotes(currentDay);
+        }
+    }
+
+    function loadNotes() {
+        const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+        Object.keys(notes).forEach(day => {
+            displayNotes(parseInt(day));
+        });
+    }
+
+    function displayNotes(day) {
+        const notesSection = document.querySelector(`.day-content:nth-child(${day}) .notes-list`);
+        if (notesSection) {
+            const notes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
+            const dayNotes = notes[day] || [];
+            notesSection.innerHTML = dayNotes.map(note => `<li>${note}</li>`).join('');
         }
     }
 });
