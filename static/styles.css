@@ -112,7 +112,6 @@ h3 {
 }
 
 .day-content {
-    flex: 0 0 100%;
     background-color: rgba(255, 255, 255, 0.95);
     margin: 15px;
     padding: 25px;
