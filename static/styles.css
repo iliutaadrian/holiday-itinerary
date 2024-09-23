@@ -1,6 +1,8 @@
-/* Mobile-first styles */
+/* Modern Adventure-themed styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
-    font-family: 'Lora', serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
     margin: 0;
@@ -9,7 +11,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Pizza and Gelato Background Pattern */
+/* Pizza and Gelato Background Pattern (kept as requested) */
 body::before {
     content: '';
     position: fixed;
@@ -38,58 +40,65 @@ body::before {
 }
 
 header {
-    background-color: #8b0000;
+    background-color: #C65D3B;
     color: #fff;
     text-align: center;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
 }
 
 h1 {
-    font-size: 1.8em;
+    font-size: 2.5em;
     margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
 }
 
 h2 {
-    color: #8b0000;
-    border-bottom: 2px solid #8b0000;
+    color: #C65D3B;
+    border-bottom: 2px solid #C65D3B;
     padding-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1.8em;
+    font-weight: 600;
 }
 
 h3 {
-    color: #ce2b37;
-    font-size: 1.2em;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    color: #ff6b6b;
+    font-size: 1.4em;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 #day-selector {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .day-btn {
-    background-color: #8b0000;
+    background-color: #C65D3B;
     color: #fff;
     border: none;
-    padding: 8px 12px;
+    padding: 10px 15px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    border-radius: 5px;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .day-btn:hover,
 .day-btn.active {
-    background-color: #ce2b37;
-    transform: scale(1.05);
+    background-color: #ff6b6b;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #slider-container {
@@ -104,29 +113,39 @@ h3 {
 
 .day-content {
     flex: 0 0 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    margin: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    margin: 15px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 ul {
     padding-left: 20px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+li::before {
+    content: '🌟';
+    position: absolute;
+    left: -5px;
+    top: 0;
 }
 
 footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
     font-style: italic;
     color: #666;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
 }
 
 /* Italian flag colors */
@@ -142,68 +161,96 @@ footer {
 /* Notes container styles */
 #notes-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding: 0 15px;
+    margin-top: 30px;
+    padding: 0 20px;
 }
 
 #notes {
     flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #8b0000;
-    border-radius: 5px;
-    font-family: 'Lora', serif;
+    padding: 12px;
+    border: 2px solid #C65D3B;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
     resize: vertical;
-    min-height: 100px;
-    margin-right: 10px;
+    min-height: 120px;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+#notes:focus {
+    outline: none;
+    border-color: #ff6b6b;
 }
 
 #save-notes {
-    background-color: #8b0000;
+    background-color: #C65D3B;
     color: #fff;
     border: none;
-    padding: 8px 15px;
+    padding: 12px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 5px;
-    font-family: 'Lora', serif;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     align-self: flex-start;
 }
 
 #save-notes:hover {
-    background-color: #ce2b37;
+    background-color: #ff6b6b;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Tablet styles */
 @media (min-width: 600px) {
     body {
-        padding: 15px;
+        padding: 20px;
     }
 
     h1 {
-        font-size: 2.2em;
+        font-size: 3em;
     }
 
     h2 {
-        font-size: 1.8em;
+        font-size: 2.2em;
     }
 
     .day-content {
-        padding: 20px;
+        padding: 30px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 599px) {
+    #notes-container {
+        flex-direction: column;
+    }
+
+    #notes {
+        width: 100%;
+    }
+
+    #save-notes {
+        margin-top: 10px;
     }
 }
 
 /* Desktop styles */
 @media (min-width: 1024px) {
     body {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 30px;
     }
 
     h1 {
-        font-size: 2.5em;
+        font-size: 3.5em;
     }
 
     #day-selector {
@@ -211,10 +258,10 @@ footer {
     }
 
     .day-btn {
-        padding: 10px 15px;
+        padding: 12px 20px;
     }
 
     .day-content {
-        padding: 25px;
+        padding: 35px;
     }
 }

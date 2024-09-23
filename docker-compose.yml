@@ -1,12 +1,17 @@
 version: '3'
 services:
-  italy-itinerary:
-    image: nginx:alpine
-    container_name: italy-itinerary
+  italy-itinerary-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: italy-itinerary-app
     volumes:
-      - ./:/usr/share/nginx/html
+      - ./:/app
     ports:
-      - "7001:80"
+      - "7001:5000"
+    environment:
+      - FLASK_ENV=development
+    command: python /app/app.py
 
 networks:
   italy-network:

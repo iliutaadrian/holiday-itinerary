@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const daySelector = document.getElementById('day-selector');
     const notesTextarea = document.getElementById('notes'); // Updated ID
     const saveNotesBtn = document.getElementById('save-notes');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const messageDiv = document.getElementById('message');
     let currentDay = 1;
 
     // Function to fetch the itinerary content from itinerary.md
     function fetchItineraryContent() {
-        fetch('itinerary.md')
+        fetch('/itinerary.md')
             .then(response => response.text())
             .then(content => {
                 processMarkdown(content);
@@ -46,11 +48,22 @@ document.addEventListener('DOMContentLoaded', function () {
             dayButton.className = 'day-btn';
             dayButton.textContent = `Day ${index + 1}`;
             dayButton.dataset.day = index + 1;
-            dayButton.addEventListener('click', () => showDay(index + 1));
+            dayButton.addEventListener('click', () => {
+                showDay(index + 1);
+                // Update URL with day parameter
+                history.pushState(null, '', `?day=${index + 1}`);
+            });
             daySelector.appendChild(dayButton);
         });
 
-        showDay(1);
+        // Check for day parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dayParam = urlParams.get('day');
+        if (dayParam) {
+            showDay(parseInt(dayParam));
+        } else {
+            showDay(1);
+        }
         loadNotes();
     }
 
@@ -102,19 +115,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function saveNotes() {
         const notes = notesTextarea.value.trim();
-        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
-        allNotes[currentDay] = notes;
-        localStorage.setItem('itineraryNotes', JSON.stringify(allNotes));
+        showLoading(true);
+        fetch('/save_note', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ day: currentDay, content: notes })
+        })
+            .then(response => response.json())
+            .then(data => {
+                showLoading(false);
+                if (data.status === 'success') {
+                    showMessage('Notes saved successfully', 'success');
+                } else {
+                    showMessage('Error saving notes', 'error');
+                }
+            })
+            .catch(error => {
+                showLoading(false);
+                showMessage('Error saving notes: ' + error.message, 'error');
+            });
     }
 
     function loadNotes() {
-        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
         displayNotes(currentDay);
     }
 
     function displayNotes(day) {
-        const allNotes = JSON.parse(localStorage.getItem('itineraryNotes')) || {};
-        const dayNotes = allNotes[day] || '';
-        notesTextarea.value = dayNotes;
+        fetch(`/get_note/${day}`)
+            .then(response => response.json())
+            .then(data => {
+                notesTextarea.value = data.content;
+            })
+            .catch(error => {
+                console.error('Error fetching notes:', error);
+            });
+    }
+
+    function showLoading(isLoading) {
+        loadingSpinner.style.display = isLoading ? 'inline-block' : 'none';
+        saveNotesBtn.disabled = isLoading;
+    }
+
+    function showMessage(message, type) {
+        messageDiv.textContent = message;
+        messageDiv.className = type;
+        messageDiv.style.display = 'block';
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 3000);
     }
 });

@@ -3,7 +3,6 @@
 ## Day 1 (Oct 2): Arrival and Catania
 
 ### Morning
-- muie
 - Arrive at Catania Airport at 6:20 AM, pick up the rental car
 - Visit the Duomo and climb the cupola for rooftop views
 - Explore Giardini Bellini for a leisurely walk
@@ -29,6 +28,7 @@ Hotel Villa Belvedere (or similar) in Taormina
 ## Day 2 (Oct 3): Taormina and Castelmola
 
 ### Morning
+- muie
 - Explore the charming village of Castelmola with stunning views of Taormina
 
 ### Afternoon

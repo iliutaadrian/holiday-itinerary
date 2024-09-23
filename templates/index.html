@@ -5,33 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Italian Adventure Itinerary</title>
-    <link rel="stylesheet" href="static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
 </head>
 
 <body>
     <header>
-        <div class="italian-flag"></div>
-        <h1><i class="fas fa-map-marked-alt"></i> Italian Adventure Itinerary</h1>
+        <h1><i class="fas fa-flag" style="color: #009246;"></i> Italian Adventure Itinerary <i class="fas fa-flag"
+                style="color: #ce2b37;"></i></h1>
     </header>
     <nav id="day-selector"></nav>
     <div id="slider-container">
         <div id="slider"></div>
     </div>
+
+    <div id="message"></div>
     <div id="notes-container">
-        <textarea id="notes" placeholder="Enter your travel notes here..."></textarea>
+        <textarea id="notes" placeholder="Enter your notes here..."></textarea>
         <div>
-            <button id="save-notes"><i class="fas fa-save"></i> Save Notes</button>
             <div id="loading-spinner"></div>
+            <button id="save-notes">Save Notes</button>
         </div>
-        <div id="message"></div>
     </div>
     <footer>
-        <p><i class="fas fa-plane"></i> Enjoy your Italian adventure! <i class="fas fa-pizza-slice"></i></p>
+        <p>Enjoy your Italian adventure!</p>
     </footer>
-    <script src="static/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
