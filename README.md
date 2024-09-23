@@ -15,6 +15,7 @@ This web application is designed to help users plan and document their vacations
 - **CSS**: For styling the application with a modern design.
 - **JavaScript**: For dynamic functionality, including fetching itinerary content and saving notes.
 - **Markdown**: The itinerary content is written in Markdown format for easy editing.
+- **Flask**: For backend
 
 ## Installation
 1. Clone the repository:
@@ -22,12 +23,11 @@ This web application is designed to help users plan and document their vacations
    git clone <repository-url>
    cd vacation_itinerary
    ```
-2. Install dependencies (if any).
-3. Run the following command to start the application:
+2. Run the following command to start the application:
    ```bash
    docker-compose up --build
    ```
-4. Open the `localhost:7001`
+3. Open the `localhost:7001`
 
 ## Usage
 - Navigate through the days of your itinerary using the buttons provided.
@@ -39,6 +39,3 @@ This web application is designed to help users plan and document their vacations
 
 ## License
 This project is licensed under the MIT License.
-
-## Acknowledgments
-- Designed for travelers to document their vacations.
