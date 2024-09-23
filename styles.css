@@ -1,0 +1,184 @@
+/* Mobile-first styles */
+body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f3e6;
+    overflow-x: hidden;
+}
+
+/* Pizza and Gelato Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><text x="10" y="40" font-family="Arial" font-size="30" fill="rgba(139, 0, 0, 0.1)">🍕</text></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><text x="10" y="40" font-family="Arial" font-size="30" fill="rgba(0, 146, 70, 0.1)">🍦</text></svg>');
+    background-position: 0 0, 30px 30px;
+    background-repeat: repeat;
+    animation: moveBackground 60s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0, 30px 30px;
+    }
+
+    100% {
+        background-position: 60px 60px, 90px 90px;
+    }
+}
+
+header {
+    background-color: #8b0000;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #8b0000;
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+h3 {
+    color: #ce2b37;
+    font-size: 1.2em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#day-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.day-btn {
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 5px;
+}
+
+.day-btn:hover,
+.day-btn.active {
+    background-color: #ce2b37;
+    transform: scale(1.05);
+}
+
+#slider-container {
+    overflow: hidden;
+    position: relative;
+}
+
+#slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.day-content {
+    flex: 0 0 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Italian flag colors */
+.italian-flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #009246 33.33%, #fff 33.33%, #fff 66.66%, #ce2b37 66.66%);
+}
+
+/* Tablet styles */
+@media (min-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .day-content {
+        padding: 20px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+    body {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    #day-selector {
+        justify-content: space-between;
+    }
+
+    .day-btn {
+        padding: 10px 15px;
+    }
+
+    .day-content {
+        padding: 25px;
+    }
+}
